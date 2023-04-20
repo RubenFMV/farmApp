@@ -17,16 +17,13 @@ public class UsuarioServices {
 		return userRepository.findAll();
 	}
 	
-	public Usuario obtenerUnUsuario(String numpleado) {
-		try {
-			System.out.println(numpleado);
-			return userRepository.findById(numpleado).get();
-		 } catch (Exception e) {
-		    e.printStackTrace();
-		    return null;
-		 }
-		
-		
+	public Usuario obtenerUnUsuario(String numEmpleado) {
+		System.out.println(userRepository.existsByNumEmpleado(numEmpleado));
+		return userRepository.findByNumEmpleado(numEmpleado).get(0);
+	}
+	
+	public void   guardarUsuario(Usuario user) {
+		userRepository.save(user);
 	}
 	
 }

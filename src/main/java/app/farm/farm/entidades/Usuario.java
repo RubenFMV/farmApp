@@ -14,26 +14,17 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Este se ocupa para decir que es un campo clave ID
-	@Column(name = "numEmpleado")
+	Integer idbase;
 	String numEmpleado;
-	@Column(name = "idRol")
 	Integer idRol;
-	@Column(name = "nombre")
 	String nombre;
-	@Column(name = "apellido")
 	String apellido;
-	@Column(name = "telefono")
 	String telefono;
-	@Column(name = "correo")
 	String correo;
-	@Column(name = "password")
 	String password;
-	@Column(name = "estatus")
 	int estatus;
 
-	@JsonManagedReference
-	@OneToMany(mappedBy = "usuario", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-			CascadeType.REFRESH, }, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "usuario")
 	private List<Evidencia> evidencias;
 
 	public List<Evidencia> getEvidencias() {
@@ -41,6 +32,20 @@ public class Usuario {
 	}
 
 	public void setEvidencias() {
+		this.evidencias = evidencias;
+	}
+	
+	
+	
+	public Integer getIdbase() {
+		return idbase;
+	}
+
+	public void setIdbase(Integer idbase) {
+		this.idbase = idbase;
+	}
+
+	public void setEvidencias(List<Evidencia> evidencias) {
 		this.evidencias = evidencias;
 	}
 

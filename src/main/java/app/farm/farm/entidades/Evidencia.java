@@ -6,6 +6,7 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -17,18 +18,15 @@ public class Evidencia {
 	@Column(name="idEvidencia")
 	private Integer idEvidencia;
 	
-	@Column(name="fecha")
 	private Calendar fecha;
 	
-	@Column(name="imagen")
 	private String imagen;
 	
-	@Column(name="folio")
 	private String folio;
 	
-	@JsonBackReference
-	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH,})
-	@JoinColumn(name="numEmpleado")
+
+	@ManyToOne
+	@JsonIgnore
 	private Usuario usuario;
 
 	
